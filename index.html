@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FED26S</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+  /* ---------- Färger och typsnitt (light mode) ---------- */
+  :root {
+    --bg: #F5F7FB;
+    --surface: #FFFFFF;
+    --fg: #121826;
+    --muted: #556075;
+    --line: #DCE2EE;
+    --brand: #2563EB;
+    --brand-ink: #FFFFFF;
+    --mark: #FDE047;
+    --font-display: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+
+  /* ---------- Samma färger i dark mode ---------- */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0D1220;
+      --surface: #151C2E;
+      --fg: #EEF2FA;
+      --muted: #9AA6BF;
+      --line: #26304A;
+      --brand: #3B82F6;
+      color-scheme: dark;
+    }
+  }
+
+  /* ---------- Grund ---------- */
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 16px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* ---------- Sidhuvud med logga ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    width: 88px;
+    height: 88px;
+    flex: none;
+    border-radius: 50%;
+    background: #2563EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-family: var(--font-display);
+  }
+
+  .brace {
+    color: var(--mark);
+    font-size: 40px;
+    line-height: 1;
+    margin-top: -4px;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1;
+    color: #FFFFFF;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    margin: 4px 0 0;
+    color: var(--muted);
+  }
+
+  /* ---------- Sektioner ---------- */
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+
+  .tag { color: var(--brand); }
+
+  /* ---------- Kalendern ---------- */
+  .calendar {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .calendar iframe {
+    display: block;
+    width: 100%;
+    height: 640px;
+    border: 0;
+  }
+
+  /* Dator: visa månadsvyn, göm listvyn */
+  .agenda { display: none !important; }
+
+  /* Mobil: göm månadsvyn, visa listvyn */
+  @media (max-width: 600px) {
+    .month { display: none !important; }
+    .agenda { display: block !important; height: 520px; }
+  }
+
+  /* ---------- Knappar ---------- */
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--brand);
+    color: var(--brand-ink);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--fg);
+    border: 1px solid var(--line);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  footer {
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-family: var(--font-display);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Sidhuvud -->
+  <header>
+    <div class="logo" aria-hidden="true">
+      <span class="brace">{</span>
+      <span class="stack"><span>FED</span><span>26S</span></span>
+      <span class="brace">}</span>
+    </div>
+    <div>
+      <h1>FED26S</h1>
+      <p class="subtitle">Frontendutvecklare – klassens deadlines</p>
+    </div>
+  </header>
+
+  <!-- Kalender -->
+  <section>
+    <h2><span class="tag">&lt;</span>kalender<span class="tag">/&gt;</span></h2>
+
+    <div class="calendar">
+      <!-- Månadsvy (visas på dator) -->
+      <iframe class="month"
+        title="FED26S kalender, månadsvy"
+        src="https://calendar.google.com/calendar/embed?src=b6c47ab37941d3a160b6b197c4eeaa6e78655fad6027bef18f5dcc2204ff19c3%40group.calendar.google.com&amp;ctz=Europe%2FStockholm&amp;mode=MONTH&amp;hl=sv&amp;wkst=2&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0"></iframe>
+
+      <!-- Listvy (visas på mobil) -->
+      <iframe class="agenda"
+        title="FED26S kalender, listvy"
+        src="https://calendar.google.com/calendar/embed?src=b6c47ab37941d3a160b6b197c4eeaa6e78655fad6027bef18f5dcc2204ff19c3%40group.calendar.google.com&amp;ctz=Europe%2FStockholm&amp;mode=AGENDA&amp;hl=sv&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0"></iframe>
+    </div>
+
+    <div class="actions">
+      <a class="btn" href="https://calendar.google.com/calendar/render?cid=b6c47ab37941d3a160b6b197c4eeaa6e78655fad6027bef18f5dcc2204ff19c3%40group.calendar.google.com" target="_blank" rel="noopener">+ Lägg till i min Google Kalender</a>
+    </div>
+  </section>
+
+  <footer>&lt;/FED26S&gt;</footer>
+</div>
+</body>
+</html>
